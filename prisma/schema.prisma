@@ -16,6 +16,7 @@ datasource db {
 model Visitor {
   id        Int      @id @default(autoincrement())
   ip        String
+  province  String?
   city      String?
   browser   String?
   os        String?

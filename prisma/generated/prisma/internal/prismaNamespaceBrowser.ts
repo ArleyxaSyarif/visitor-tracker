@@ -73,6 +73,7 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const VisitorScalarFieldEnum = {
   id: 'id',
   ip: 'ip',
+  province: 'province',
   city: 'city',
   browser: 'browser',
   os: 'os',
