@@ -82,10 +82,22 @@ export async function GET() {
     }
   }
 
-  // Combine device vendor and model (e.g. "Samsung Galaxy S21", "Apple iPhone 13")
-  const deviceName = [device.device.vendor, device.device.model]
-    .filter(Boolean)
-    .join(" ") || null
+  // Build device info (e.g. "Samsung SM-S924B", "Apple iPhone")
+  const vendor = device.device.vendor || null
+  const model = device.device.model || null
+  const deviceType = device.device.type || null // "mobile", "tablet", "console", etc.
+
+  let deviceName: string | null = null
+  if (vendor && model && model.length > 2) {
+    deviceName = `${vendor} ${model}`
+  } else if (vendor) {
+    deviceName = vendor
+  } else if (deviceType) {
+    // No vendor detected, at least say it's a mobile/tablet
+    const osInfo = [device.os.name, device.os.version].filter(Boolean).join(" ")
+    deviceName = osInfo ? `${deviceType} (${osInfo})` : deviceType
+  }
+
 
   await prisma.visitor.create({
     data: {
