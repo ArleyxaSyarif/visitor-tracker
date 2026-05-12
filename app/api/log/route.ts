@@ -82,15 +82,22 @@ export async function GET() {
     }
   }
 
+  // Combine device vendor and model (e.g. "Samsung Galaxy S21", "Apple iPhone 13")
+  const deviceName = [device.device.vendor, device.device.model]
+    .filter(Boolean)
+    .join(" ") || null
+
   await prisma.visitor.create({
     data: {
       ip,
       province,
       city,
+      device: deviceName,
       browser: device.browser.name,
       os: device.os.name,
     },
   })
+
 
   return Response.json({ ok: true })
 }

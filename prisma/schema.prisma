@@ -18,9 +18,11 @@ model Visitor {
   ip        String
   province  String?
   city      String?
+  device    String?
   browser   String?
   os        String?
   createdAt DateTime @default(now())
 }
+
 
 

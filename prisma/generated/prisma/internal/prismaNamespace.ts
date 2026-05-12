@@ -522,6 +522,7 @@ export const VisitorScalarFieldEnum = {
   ip: 'ip',
   province: 'province',
   city: 'city',
+  device: 'device',
   browser: 'browser',
   os: 'os',
   createdAt: 'createdAt'
